@@ -77,13 +77,146 @@
       to { transform: rotate(360deg); }
     }
     
-    /* Compass Widget */
+    /* Info Panel - Top Left */
+    #infoPanel {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(0,0,0,0.85);
+      color: white;
+      padding: 12px 15px;
+      border-radius: 8px;
+      font-family: sans-serif;
+      font-size: 12px;
+      min-width: 180px;
+      z-index: 1000;
+      border: 1px solid #444;
+    }
+    
+    /* Control Panel - Top Right */
+    #controlPanel {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      z-index: 1000;
+      max-height: calc(100vh - 180px);
+      overflow-y: auto;
+    }
+    
+    #controlPanel::-webkit-scrollbar {
+      width: 6px;
+    }
+    
+    #controlPanel::-webkit-scrollbar-thumb {
+      background: rgba(255,255,255,0.3);
+      border-radius: 3px;
+    }
+    
+    .panel-section {
+      background: rgba(0,0,0,0.75);
+      border-radius: 8px;
+      padding: 10px;
+      border: 1px solid #444;
+    }
+    
+    .panel-title {
+      color: #aaa;
+      font-size: 10px;
+      font-family: sans-serif;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    .panel-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    
+    .panel-buttons-row {
+      display: flex;
+      gap: 4px;
+    }
+    
+    .ctrl-btn {
+      padding: 6px 10px;
+      background: rgba(60,60,60,0.9);
+      color: white;
+      border: 1px solid #666;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 11px;
+      transition: background 0.2s;
+    }
+    
+    .ctrl-btn:hover {
+      background: rgba(80,80,80,0.9);
+    }
+    
+    .ctrl-btn.active {
+      background: rgba(80,120,80,0.9);
+      border-color: #6a6;
+    }
+    
+    .ctrl-btn.location {
+      background: rgba(30,80,150,0.9);
+      border-color: #4a90d9;
+    }
+    
+    .ctrl-btn.camera {
+      background: rgba(100,50,150,0.9);
+      border-color: #a070d0;
+    }
+    
+    /* Time Controls - Bottom Left */
+    #timeControls {
+      position: absolute;
+      bottom: 30px;
+      left: 10px;
+      display: flex;
+      gap: 5px;
+      z-index: 1000;
+      background: rgba(0,0,0,0.75);
+      padding: 8px 10px;
+      border-radius: 8px;
+      border: 1px solid #444;
+    }
+    
+    .time-btn {
+      padding: 5px 8px;
+      background: rgba(60,60,60,0.9);
+      color: white;
+      border: 1px solid #666;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 11px;
+    }
+    
+    .time-btn:hover {
+      background: rgba(80,80,80,0.9);
+    }
+    
+    .time-btn.night {
+      background: rgba(80,50,120,0.9);
+      border-color: #a070d0;
+    }
+    
+    .time-btn.day {
+      background: rgba(150,120,50,0.9);
+      border-color: #d0a030;
+    }
+    
+    /* Compass Widget - Bottom Right */
     #compassWidget {
       position: absolute;
-      bottom: 80px;
-      right: 20px;
-      width: 120px;
-      height: 120px;
+      bottom: 30px;
+      right: 10px;
+      width: 100px;
+      height: 100px;
       z-index: 1000;
     }
     
@@ -98,9 +231,9 @@
       width: 100%;
       height: 100%;
       border-radius: 50%;
-      background: rgba(0, 0, 0, 0.7);
+      background: rgba(0, 0, 0, 0.8);
       border: 2px solid rgba(255, 255, 255, 0.3);
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5), inset 0 0 30px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
     }
     
     .compass-rose {
@@ -113,33 +246,33 @@
     .compass-direction {
       position: absolute;
       font-weight: bold;
-      font-size: 14px;
+      font-size: 12px;
       color: white;
       text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
     }
     
     .compass-direction.north {
-      top: 8px;
+      top: 6px;
       left: 50%;
       transform: translateX(-50%);
       color: #ff6b6b;
-      font-size: 16px;
+      font-size: 14px;
     }
     
     .compass-direction.south {
-      bottom: 8px;
+      bottom: 6px;
       left: 50%;
       transform: translateX(-50%);
     }
     
     .compass-direction.east {
-      right: 10px;
+      right: 8px;
       top: 50%;
       transform: translateY(-50%);
     }
     
     .compass-direction.west {
-      left: 10px;
+      left: 8px;
       top: 50%;
       transform: translateY(-50%);
     }
@@ -148,52 +281,50 @@
       position: absolute;
       top: 50%;
       left: 50%;
-      width: 4px;
-      height: 45px;
-      margin-left: -2px;
-      margin-top: -40px;
+      width: 3px;
+      height: 38px;
+      margin-left: -1.5px;
+      margin-top: -34px;
       background: linear-gradient(to bottom, #ff6b6b 0%, #ff6b6b 50%, white 50%, white 100%);
       border-radius: 2px;
-      box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
     }
     
     .compass-needle::after {
       content: '';
       position: absolute;
-      top: -6px;
+      top: -5px;
       left: 50%;
       transform: translateX(-50%);
       width: 0;
       height: 0;
-      border-left: 6px solid transparent;
-      border-right: 6px solid transparent;
-      border-bottom: 10px solid #ff6b6b;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-bottom: 8px solid #ff6b6b;
     }
     
     .compass-center {
       position: absolute;
       top: 50%;
       left: 50%;
-      width: 16px;
-      height: 16px;
-      margin-left: -8px;
-      margin-top: -8px;
+      width: 12px;
+      height: 12px;
+      margin-left: -6px;
+      margin-top: -6px;
       background: radial-gradient(circle, #fff 0%, #aaa 100%);
       border-radius: 50%;
       border: 2px solid #666;
-      box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
     }
     
     .compass-heading {
       position: absolute;
-      bottom: -25px;
+      bottom: -22px;
       left: 50%;
       transform: translateX(-50%);
-      background: rgba(0, 0, 0, 0.7);
+      background: rgba(0, 0, 0, 0.8);
       color: white;
-      padding: 3px 10px;
-      border-radius: 10px;
-      font-size: 12px;
+      padding: 2px 8px;
+      border-radius: 8px;
+      font-size: 11px;
       font-family: monospace;
       white-space: nowrap;
     }
@@ -206,25 +337,33 @@
     
     .compass-tick {
       position: absolute;
-      width: 2px;
-      height: 8px;
+      width: 1px;
+      height: 6px;
       background: rgba(255, 255, 255, 0.4);
-      top: 4px;
+      top: 3px;
       left: 50%;
-      margin-left: -1px;
-      transform-origin: center 56px;
+      margin-left: -0.5px;
+      transform-origin: center 47px;
     }
     
     .compass-tick.major {
-      height: 12px;
+      height: 10px;
       width: 2px;
+      margin-left: -1px;
       background: rgba(255, 255, 255, 0.7);
     }
     
-    /* Hide Cesium credits */
-    .cesium-credit-logoContainer,
-    .cesium-credit-textContainer {
-      display: none !important;
+    /* Cesium Widget Adjustments */
+    .cesium-viewer-geocoderContainer {
+      position: absolute !important;
+      top: 10px !important;
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+      z-index: 1001 !important;
+    }
+    
+    .cesium-geocoder-input {
+      width: 250px !important;
     }
   </style>
 </head>
@@ -239,7 +378,34 @@
   <!-- Cesium Container -->
   <div id="cesiumContainer"></div>
   
-  <!-- Compass Widget -->
+  <!-- Info Panel - Top Left -->
+  <div id="infoPanel"></div>
+  
+  <!-- Control Panel - Top Right -->
+  <div id="controlPanel">
+    <!-- Locations -->
+    <div class="panel-section">
+      <div class="panel-title">📍 Locations</div>
+      <div class="panel-buttons" id="locationButtons"></div>
+    </div>
+    
+    <!-- Display Options -->
+    <div class="panel-section">
+      <div class="panel-title">⚙️ Display</div>
+      <div class="panel-buttons" id="displayButtons"></div>
+    </div>
+    
+    <!-- Camera -->
+    <div class="panel-section">
+      <div class="panel-title">📷 Camera</div>
+      <div class="panel-buttons" id="cameraButtons"></div>
+    </div>
+  </div>
+  
+  <!-- Time Controls - Bottom Left -->
+  <div id="timeControls"></div>
+  
+  <!-- Compass Widget - Bottom Right -->
   <div id="compassWidget">
     <div class="compass-container">
       <div class="compass-ring"></div>
@@ -281,7 +447,7 @@
       sun: true,
       moon: true,
       baseLayerPicker: false,
-      geocoder: false,
+      geocoder: true,  // ENABLED
       homeButton: false,
       sceneModePicker: false,
       navigationHelpButton: false,
@@ -309,23 +475,14 @@
       compassRose.style.transform = `rotate(${-normalizedHeading}deg)`;
       
       let direction = '';
-      if (normalizedHeading >= 337.5 || normalizedHeading < 22.5) {
-        direction = 'N';
-      } else if (normalizedHeading >= 22.5 && normalizedHeading < 67.5) {
-        direction = 'NE';
-      } else if (normalizedHeading >= 67.5 && normalizedHeading < 112.5) {
-        direction = 'E';
-      } else if (normalizedHeading >= 112.5 && normalizedHeading < 157.5) {
-        direction = 'SE';
-      } else if (normalizedHeading >= 157.5 && normalizedHeading < 202.5) {
-        direction = 'S';
-      } else if (normalizedHeading >= 202.5 && normalizedHeading < 247.5) {
-        direction = 'SW';
-      } else if (normalizedHeading >= 247.5 && normalizedHeading < 292.5) {
-        direction = 'W';
-      } else if (normalizedHeading >= 292.5 && normalizedHeading < 337.5) {
-        direction = 'NW';
-      }
+      if (normalizedHeading >= 337.5 || normalizedHeading < 22.5) direction = 'N';
+      else if (normalizedHeading >= 22.5 && normalizedHeading < 67.5) direction = 'NE';
+      else if (normalizedHeading >= 67.5 && normalizedHeading < 112.5) direction = 'E';
+      else if (normalizedHeading >= 112.5 && normalizedHeading < 157.5) direction = 'SE';
+      else if (normalizedHeading >= 157.5 && normalizedHeading < 202.5) direction = 'S';
+      else if (normalizedHeading >= 202.5 && normalizedHeading < 247.5) direction = 'SW';
+      else if (normalizedHeading >= 247.5 && normalizedHeading < 292.5) direction = 'W';
+      else if (normalizedHeading >= 292.5 && normalizedHeading < 337.5) direction = 'NW';
       
       compassHeading.textContent = `${direction} ${Math.round(normalizedHeading)}°`;
     }
@@ -355,7 +512,6 @@
     // STAR CATALOG
     // ============================================
     const starCatalog = [
-      // ORION
       { id: "betelgeuse", name: "Betelgeuse", ra: 88.793, dec: 7.407, mag: 0.42, temp: 3500, constellation: "Orion" },
       { id: "rigel", name: "Rigel", ra: 78.634, dec: -8.202, mag: 0.13, temp: 12100, constellation: "Orion" },
       { id: "bellatrix", name: "Bellatrix", ra: 81.283, dec: 6.350, mag: 1.64, temp: 22000, constellation: "Orion" },
@@ -363,8 +519,6 @@
       { id: "alnilam", name: "Alnilam", ra: 84.053, dec: -1.202, mag: 1.69, temp: 27000, constellation: "Orion" },
       { id: "alnitak", name: "Alnitak", ra: 85.190, dec: -1.943, mag: 1.77, temp: 33000, constellation: "Orion" },
       { id: "mintaka", name: "Mintaka", ra: 83.001, dec: -0.299, mag: 2.23, temp: 31000, constellation: "Orion" },
-
-      // BIG DIPPER
       { id: "dubhe", name: "Dubhe", ra: 165.932, dec: 61.751, mag: 1.79, temp: 4660, constellation: "Big Dipper" },
       { id: "merak", name: "Merak", ra: 165.460, dec: 56.382, mag: 2.37, temp: 9377, constellation: "Big Dipper" },
       { id: "phecda", name: "Phecda", ra: 178.458, dec: 53.695, mag: 2.44, temp: 9355, constellation: "Big Dipper" },
@@ -372,62 +526,40 @@
       { id: "alioth", name: "Alioth", ra: 193.507, dec: 55.960, mag: 1.77, temp: 9020, constellation: "Big Dipper" },
       { id: "mizar", name: "Mizar", ra: 200.981, dec: 54.925, mag: 2.04, temp: 9000, constellation: "Big Dipper" },
       { id: "alkaid", name: "Alkaid", ra: 206.885, dec: 49.313, mag: 1.86, temp: 15540, constellation: "Big Dipper" },
-
-      // LITTLE DIPPER
       { id: "polaris", name: "Polaris", ra: 37.954, dec: 89.264, mag: 2.02, temp: 6015, constellation: "Little Dipper" },
       { id: "kochab", name: "Kochab", ra: 222.676, dec: 74.155, mag: 2.08, temp: 4030, constellation: "Little Dipper" },
       { id: "pherkad", name: "Pherkad", ra: 230.182, dec: 71.834, mag: 3.00, temp: 8600, constellation: "Little Dipper" },
-
-      // CASSIOPEIA
       { id: "schedar", name: "Schedar", ra: 10.127, dec: 56.537, mag: 2.24, temp: 4530, constellation: "Cassiopeia" },
       { id: "caph", name: "Caph", ra: 2.295, dec: 59.150, mag: 2.28, temp: 7079, constellation: "Cassiopeia" },
       { id: "gamma_cas", name: "Gamma Cas", ra: 14.177, dec: 60.717, mag: 2.47, temp: 25000, constellation: "Cassiopeia" },
       { id: "ruchbah", name: "Ruchbah", ra: 21.454, dec: 60.235, mag: 2.68, temp: 8400, constellation: "Cassiopeia" },
       { id: "segin", name: "Segin", ra: 28.599, dec: 63.670, mag: 3.37, temp: 15000, constellation: "Cassiopeia" },
-
-      // CYGNUS
       { id: "deneb", name: "Deneb", ra: 310.358, dec: 45.280, mag: 1.25, temp: 8525, constellation: "Cygnus" },
       { id: "sadr", name: "Sadr", ra: 305.557, dec: 40.257, mag: 2.23, temp: 5800, constellation: "Cygnus" },
       { id: "gienah_cyg", name: "Gienah", ra: 305.253, dec: 33.970, mag: 2.48, temp: 4700, constellation: "Cygnus" },
       { id: "albireo", name: "Albireo", ra: 292.680, dec: 27.960, mag: 3.08, temp: 4400, constellation: "Cygnus" },
-
-      // LYRA
       { id: "vega", name: "Vega", ra: 279.235, dec: 38.784, mag: 0.03, temp: 9602, constellation: "Lyra" },
       { id: "sheliak", name: "Sheliak", ra: 282.520, dec: 33.363, mag: 3.52, temp: 13000, constellation: "Lyra" },
       { id: "sulafat", name: "Sulafat", ra: 284.736, dec: 32.690, mag: 3.24, temp: 10000, constellation: "Lyra" },
-
-      // AQUILA
       { id: "altair", name: "Altair", ra: 297.696, dec: 8.868, mag: 0.76, temp: 7550, constellation: "Aquila" },
       { id: "tarazed", name: "Tarazed", ra: 296.565, dec: 10.613, mag: 2.72, temp: 4200, constellation: "Aquila" },
       { id: "alshain", name: "Alshain", ra: 298.828, dec: 6.407, mag: 3.71, temp: 6100, constellation: "Aquila" },
-
-      // SCORPIUS
       { id: "antares", name: "Antares", ra: 247.352, dec: -26.432, mag: 0.96, temp: 3570, constellation: "Scorpius" },
       { id: "shaula", name: "Shaula", ra: 263.402, dec: -37.104, mag: 1.63, temp: 25000, constellation: "Scorpius" },
       { id: "sargas", name: "Sargas", ra: 264.330, dec: -42.998, mag: 1.87, temp: 6400, constellation: "Scorpius" },
       { id: "dschubba", name: "Dschubba", ra: 240.083, dec: -22.622, mag: 2.29, temp: 28000, constellation: "Scorpius" },
-
-      // LEO
       { id: "regulus", name: "Regulus", ra: 152.093, dec: 11.967, mag: 1.40, temp: 12460, constellation: "Leo" },
       { id: "denebola", name: "Denebola", ra: 177.265, dec: 14.572, mag: 2.14, temp: 8500, constellation: "Leo" },
       { id: "algieba", name: "Algieba", ra: 146.463, dec: 19.842, mag: 2.08, temp: 4470, constellation: "Leo" },
-
-      // TAURUS
       { id: "aldebaran", name: "Aldebaran", ra: 68.980, dec: 16.509, mag: 0.85, temp: 3910, constellation: "Taurus" },
       { id: "elnath", name: "Elnath", ra: 81.573, dec: 28.608, mag: 1.65, temp: 13600, constellation: "Taurus" },
-
-      // GEMINI
       { id: "pollux", name: "Pollux", ra: 116.329, dec: 28.026, mag: 1.14, temp: 4666, constellation: "Gemini" },
       { id: "castor", name: "Castor", ra: 113.650, dec: 31.888, mag: 1.58, temp: 10286, constellation: "Gemini" },
       { id: "alhena", name: "Alhena", ra: 99.428, dec: 16.399, mag: 1.93, temp: 9260, constellation: "Gemini" },
-
-      // SOUTHERN CROSS
       { id: "acrux", name: "Acrux", ra: 186.650, dec: -63.099, mag: 0.76, temp: 28000, constellation: "Southern Cross" },
       { id: "mimosa", name: "Mimosa", ra: 191.930, dec: -59.689, mag: 1.25, temp: 27000, constellation: "Southern Cross" },
       { id: "gacrux", name: "Gacrux", ra: 187.791, dec: -57.113, mag: 1.63, temp: 3689, constellation: "Southern Cross" },
       { id: "delta_cru", name: "δ Crucis", ra: 183.786, dec: -58.749, mag: 2.79, temp: 22000, constellation: "Southern Cross" },
-
-      // OTHER BRIGHT STARS
       { id: "sirius", name: "Sirius", ra: 101.287, dec: -16.716, mag: -1.46, temp: 9940, constellation: "Canis Major" },
       { id: "canopus", name: "Canopus", ra: 95.988, dec: -52.696, mag: -0.74, temp: 7350, constellation: "Carina" },
       { id: "arcturus", name: "Arcturus", ra: 213.915, dec: 19.182, mag: -0.05, temp: 4286, constellation: "Boötes" },
@@ -440,25 +572,11 @@
       { id: "alphard", name: "Alphard", ra: 141.897, dec: -8.659, mag: 2.00, temp: 4120, constellation: "Hydra" },
     ];
 
-    // ============================================
-    // CONSTELLATION LINES
-    // ============================================
     const constellationLines = {
-      "Orion": [
-        ["betelgeuse", "bellatrix"], ["bellatrix", "mintaka"], ["mintaka", "alnilam"],
-        ["alnilam", "alnitak"], ["alnitak", "saiph"], ["saiph", "rigel"],
-        ["rigel", "mintaka"], ["betelgeuse", "alnilam"],
-      ],
-      "Big Dipper": [
-        ["dubhe", "merak"], ["merak", "phecda"], ["phecda", "megrez"],
-        ["megrez", "dubhe"], ["megrez", "alioth"], ["alioth", "mizar"], ["mizar", "alkaid"],
-      ],
-      "Cassiopeia": [
-        ["caph", "schedar"], ["schedar", "gamma_cas"], ["gamma_cas", "ruchbah"], ["ruchbah", "segin"],
-      ],
-      "Cygnus": [
-        ["deneb", "sadr"], ["sadr", "gienah_cyg"], ["gienah_cyg", "albireo"], ["sadr", "albireo"],
-      ],
+      "Orion": [["betelgeuse", "bellatrix"], ["bellatrix", "mintaka"], ["mintaka", "alnilam"], ["alnilam", "alnitak"], ["alnitak", "saiph"], ["saiph", "rigel"], ["rigel", "mintaka"], ["betelgeuse", "alnilam"]],
+      "Big Dipper": [["dubhe", "merak"], ["merak", "phecda"], ["phecda", "megrez"], ["megrez", "dubhe"], ["megrez", "alioth"], ["alioth", "mizar"], ["mizar", "alkaid"]],
+      "Cassiopeia": [["caph", "schedar"], ["schedar", "gamma_cas"], ["gamma_cas", "ruchbah"], ["ruchbah", "segin"]],
+      "Cygnus": [["deneb", "sadr"], ["sadr", "gienah_cyg"], ["gienah_cyg", "albireo"], ["sadr", "albireo"]],
       "Lyra": [["vega", "sheliak"], ["sheliak", "sulafat"], ["sulafat", "vega"]],
       "Aquila": [["tarazed", "altair"], ["altair", "alshain"]],
       "Scorpius": [["dschubba", "antares"], ["antares", "shaula"], ["shaula", "sargas"]],
@@ -469,14 +587,11 @@
     };
 
     const constellationCenters = {
-      "Orion": { ra: 84, dec: -2 }, "Big Dipper": { ra: 185, dec: 55 },
-      "Cassiopeia": { ra: 15, dec: 60 }, "Cygnus": { ra: 303, dec: 38 },
-      "Lyra": { ra: 282, dec: 35 }, "Aquila": { ra: 297, dec: 9 },
-      "Scorpius": { ra: 252, dec: -30 }, "Leo": { ra: 160, dec: 15 },
-      "Gemini": { ra: 110, dec: 25 }, "Southern Cross": { ra: 187, dec: -60 },
-      "Little Dipper": { ra: 230, dec: 78 }, "Taurus": { ra: 70, dec: 18 },
-      "Canis Major": { ra: 101, dec: -20 }, "Boötes": { ra: 214, dec: 20 },
-      "Auriga": { ra: 80, dec: 44 }, "Virgo": { ra: 200, dec: -8 },
+      "Orion": { ra: 84, dec: -2 }, "Big Dipper": { ra: 185, dec: 55 }, "Cassiopeia": { ra: 15, dec: 60 },
+      "Cygnus": { ra: 303, dec: 38 }, "Lyra": { ra: 282, dec: 35 }, "Aquila": { ra: 297, dec: 9 },
+      "Scorpius": { ra: 252, dec: -30 }, "Leo": { ra: 160, dec: 15 }, "Gemini": { ra: 110, dec: 25 },
+      "Southern Cross": { ra: 187, dec: -60 }, "Little Dipper": { ra: 230, dec: 78 }, "Taurus": { ra: 70, dec: 18 },
+      "Canis Major": { ra: 101, dec: -20 }, "Boötes": { ra: 214, dec: 20 }, "Auriga": { ra: 80, dec: 44 }, "Virgo": { ra: 200, dec: -8 },
     };
 
     const starById = {};
@@ -484,11 +599,13 @@
 
     // Generate background stars
     for (let i = 0; i < 400; i++) {
-      const ra = Math.random() * 360;
-      const dec = Math.asin(2 * Math.random() - 1) * (180 / Math.PI);
-      const mag = 3 + Math.random() * 2.5;
-      const temp = 3000 + Math.random() * 25000;
-      starCatalog.push({ name: null, ra, dec, mag, temp });
+      starCatalog.push({
+        name: null,
+        ra: Math.random() * 360,
+        dec: Math.asin(2 * Math.random() - 1) * (180 / Math.PI),
+        mag: 3 + Math.random() * 2.5,
+        temp: 3000 + Math.random() * 25000
+      });
     }
 
     // ============================================
@@ -498,8 +615,7 @@
       const j2000 = 2451545.0;
       const jd = julianDate.dayNumber + julianDate.secondsOfDay / 86400.0;
       const T = (jd - j2000) / 36525.0;
-      let gmst = 280.46061837 + 360.98564736629 * (jd - j2000) +
-        0.000387933 * T * T - (T * T * T) / 38710000.0;
+      let gmst = 280.46061837 + 360.98564736629 * (jd - j2000) + 0.000387933 * T * T - (T * T * T) / 38710000.0;
       return ((gmst % 360) + 360) % 360;
     }
 
@@ -539,22 +655,16 @@
     let showLines = true;
 
     function raDecToECEF(ra, dec, gmst) {
-      const raRad = Cesium.Math.toRadians(ra);
-      const decRad = Cesium.Math.toRadians(dec);
-      const gmstRad = Cesium.Math.toRadians(gmst);
-      const icrfX = Math.cos(decRad) * Math.cos(raRad);
-      const icrfY = Math.cos(decRad) * Math.sin(raRad);
-      const icrfZ = Math.sin(decRad);
-      const cosG = Math.cos(gmstRad);
-      const sinG = Math.sin(gmstRad);
+      const raRad = Cesium.Math.toRadians(ra), decRad = Cesium.Math.toRadians(dec), gmstRad = Cesium.Math.toRadians(gmst);
+      const icrfX = Math.cos(decRad) * Math.cos(raRad), icrfY = Math.cos(decRad) * Math.sin(raRad), icrfZ = Math.sin(decRad);
+      const cosG = Math.cos(gmstRad), sinG = Math.sin(gmstRad);
       return new Cesium.Cartesian3(cosG * icrfX + sinG * icrfY, -sinG * icrfX + cosG * icrfY, icrfZ);
     }
 
     function getStarScreenPosition(ra, dec, gmst) {
       const ecefDir = raDecToECEF(ra, dec, gmst);
       const starWorldPos = Cesium.Cartesian3.multiplyByScalar(ecefDir, 1e10, new Cesium.Cartesian3());
-      const cameraPos = viewer.camera.position;
-      const cameraDir = viewer.camera.direction;
+      const cameraPos = viewer.camera.position, cameraDir = viewer.camera.direction;
       const toStar = Cesium.Cartesian3.subtract(starWorldPos, cameraPos, new Cesium.Cartesian3());
       Cesium.Cartesian3.normalize(toStar, toStar);
       if (Cesium.Cartesian3.dot(toStar, cameraDir) < -0.2) return null;
@@ -568,15 +678,13 @@
     // ============================================
     function renderStars() {
       ctx.clearRect(0, 0, starCanvas.width, starCanvas.height);
-      const time = viewer.clock.currentTime;
-      const gmst = computeGMST(time);
+      const time = viewer.clock.currentTime, gmst = computeGMST(time);
       const screenPositions = {};
 
-      // Draw constellation lines
       if (showLines) {
         ctx.strokeStyle = "rgba(70, 130, 180, 0.5)";
         ctx.lineWidth = 1.5;
-        Object.entries(constellationLines).forEach(([_, lines]) => {
+        Object.values(constellationLines).forEach(lines => {
           lines.forEach(([id1, id2]) => {
             const star1 = starById[id1], star2 = starById[id2];
             if (!star1 || !star2) return;
@@ -585,68 +693,49 @@
             if (pos1) screenPositions[id1] = pos1;
             if (pos2) screenPositions[id2] = pos2;
             if (!pos1 || !pos2) return;
-            if (pos1.x < -100 || pos1.x > starCanvas.width + 100 || pos2.x < -100 || pos2.x > starCanvas.width + 100) return;
-            if (pos1.y < -100 || pos1.y > starCanvas.height + 100 || pos2.y < -100 || pos2.y > starCanvas.height + 100) return;
-            ctx.beginPath();
-            ctx.moveTo(pos1.x, pos1.y);
-            ctx.lineTo(pos2.x, pos2.y);
-            ctx.stroke();
+            if (Math.abs(pos1.x - pos2.x) > starCanvas.width / 2) return;
+            ctx.beginPath(); ctx.moveTo(pos1.x, pos1.y); ctx.lineTo(pos2.x, pos2.y); ctx.stroke();
           });
         });
       }
 
-      // Draw stars
-      starCatalog.forEach((star) => {
+      starCatalog.forEach(star => {
         const screenPos = star.id ? (screenPositions[star.id] || getStarScreenPosition(star.ra, star.dec, gmst)) : getStarScreenPosition(star.ra, star.dec, gmst);
-        if (!screenPos) return;
-        if (screenPos.x < -20 || screenPos.x > starCanvas.width + 20 || screenPos.y < -20 || screenPos.y > starCanvas.height + 20) return;
-        const color = temperatureToRGB(star.temp);
-        const size = magnitudeToSize(star.mag);
+        if (!screenPos || screenPos.x < -20 || screenPos.x > starCanvas.width + 20 || screenPos.y < -20 || screenPos.y > starCanvas.height + 20) return;
+        const color = temperatureToRGB(star.temp), size = magnitudeToSize(star.mag);
         const gradient = ctx.createRadialGradient(screenPos.x, screenPos.y, 0, screenPos.x, screenPos.y, size * 2.5);
-        gradient.addColorStop(0, `rgba(255, 255, 255, 0.95)`);
-        gradient.addColorStop(0.2, `rgba(${color.r}, ${color.g}, ${color.b}, 0.8)`);
-        gradient.addColorStop(1, `rgba(${color.r}, ${color.g}, ${color.b}, 0)`);
-        ctx.beginPath();
-        ctx.arc(screenPos.x, screenPos.y, size * 2.5, 0, Math.PI * 2);
-        ctx.fillStyle = gradient;
-        ctx.fill();
-        ctx.beginPath();
-        ctx.arc(screenPos.x, screenPos.y, size * 0.6, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 255, 255, 1)`;
-        ctx.fill();
+        gradient.addColorStop(0, `rgba(255,255,255,0.95)`);
+        gradient.addColorStop(0.2, `rgba(${color.r},${color.g},${color.b},0.8)`);
+        gradient.addColorStop(1, `rgba(${color.r},${color.g},${color.b},0)`);
+        ctx.beginPath(); ctx.arc(screenPos.x, screenPos.y, size * 2.5, 0, Math.PI * 2); ctx.fillStyle = gradient; ctx.fill();
+        ctx.beginPath(); ctx.arc(screenPos.x, screenPos.y, size * 0.6, 0, Math.PI * 2); ctx.fillStyle = `rgba(255,255,255,1)`; ctx.fill();
       });
 
-      // Draw labels
       if (showLabels) {
-        ctx.font = "bold 14px Arial";
-        ctx.textAlign = "center";
+        ctx.font = "bold 13px Arial"; ctx.textAlign = "center";
         Object.entries(constellationCenters).forEach(([name, center]) => {
           const screenPos = getStarScreenPosition(center.ra, center.dec, gmst);
-          if (!screenPos) return;
-          if (screenPos.x < 50 || screenPos.x > starCanvas.width - 50 || screenPos.y < 30 || screenPos.y > starCanvas.height - 30) return;
+          if (!screenPos || screenPos.x < 50 || screenPos.x > starCanvas.width - 50 || screenPos.y < 30 || screenPos.y > starCanvas.height - 30) return;
           const textWidth = ctx.measureText(name).width;
-          ctx.fillStyle = "rgba(0, 0, 0, 0.6)";
-          ctx.fillRect(screenPos.x - textWidth / 2 - 5, screenPos.y - 12, textWidth + 10, 22);
-          ctx.fillStyle = "rgba(255, 220, 150, 0.95)";
-          ctx.fillText(name, screenPos.x, screenPos.y + 5);
+          ctx.fillStyle = "rgba(0,0,0,0.6)"; ctx.fillRect(screenPos.x - textWidth / 2 - 4, screenPos.y - 10, textWidth + 8, 20);
+          ctx.fillStyle = "rgba(255,220,150,0.95)"; ctx.fillText(name, screenPos.x, screenPos.y + 4);
         });
       }
-      
       updateCompass();
     }
 
     viewer.scene.postRender.addEventListener(renderStars);
 
     // ============================================
-    // UI PANEL
+    // BUILD UI
     // ============================================
-    const infoPanel = document.createElement("div");
-    infoPanel.style.cssText = `position:absolute;top:10px;left:10px;background:rgba(0,0,0,0.85);color:white;padding:15px;border-radius:8px;font-family:sans-serif;font-size:12px;max-width:250px;z-index:1000;border:1px solid #444;`;
-    document.body.appendChild(infoPanel);
+    const infoPanel = document.getElementById('infoPanel');
+    const locationButtons = document.getElementById('locationButtons');
+    const displayButtons = document.getElementById('displayButtons');
+    const cameraButtons = document.getElementById('cameraButtons');
+    const timeControls = document.getElementById('timeControls');
 
-    // ============================================
-    // BUTTONS
-    // ============================================
+    // Locations
     const locations = [
       { name: "🇩🇪 Berlin", coords: [13.405, 52.52] },
       { name: "🇦🇺 Sydney", coords: [151.209, -33.868] },
@@ -655,19 +744,10 @@
       { name: "🇨🇱 Atacama", coords: [-68.0, -23.5] },
     ];
 
-    const buttonContainer = document.createElement("div");
-    buttonContainer.style.cssText = `position:absolute;top:10px;right:10px;display:flex;flex-direction:column;gap:5px;z-index:1000;`;
-    document.body.appendChild(buttonContainer);
-
-    const locTitle = document.createElement("div");
-    locTitle.textContent = "📍 Locations";
-    locTitle.style.cssText = `color:#aaa;font-size:11px;font-family:sans-serif;margin-bottom:2px;`;
-    buttonContainer.appendChild(locTitle);
-
-    locations.forEach((loc) => {
+    locations.forEach(loc => {
       const btn = document.createElement("button");
+      btn.className = "ctrl-btn location";
       btn.textContent = loc.name;
-      btn.style.cssText = `padding:8px 12px;background:rgba(30,80,150,0.9);color:white;border:1px solid #4a90d9;border-radius:4px;cursor:pointer;font-size:12px;`;
       btn.onclick = () => {
         viewer.camera.flyTo({
           destination: Cesium.Cartesian3.fromDegrees(loc.coords[0], loc.coords[1], 100),
@@ -675,71 +755,50 @@
           duration: 2,
         });
       };
-      buttonContainer.appendChild(btn);
+      locationButtons.appendChild(btn);
     });
 
-    // Options section
-    const optionsTitle = document.createElement("div");
-    optionsTitle.textContent = "⚙️ Display";
-    optionsTitle.style.cssText = `color:#aaa;font-size:11px;font-family:sans-serif;margin-top:15px;margin-bottom:2px;`;
-    buttonContainer.appendChild(optionsTitle);
-
-    const optionsDiv = document.createElement("div");
-    optionsDiv.style.cssText = `display:flex;flex-direction:column;gap:5px;`;
-    buttonContainer.appendChild(optionsDiv);
-
-    // Toggle buttons
-    const createToggle = (text, initial, onClick) => {
-      const btn = document.createElement("button");
-      btn.textContent = text + ": ON";
-      btn.style.cssText = `padding:8px 12px;background:rgba(80,120,80,0.9);color:white;border:1px solid #6a6;border-radius:4px;cursor:pointer;font-size:12px;`;
-      let state = initial;
-      btn.onclick = () => {
-        state = !state;
-        btn.textContent = text + (state ? ": ON" : ": OFF");
-        btn.style.background = state ? "rgba(80,120,80,0.9)" : "rgba(100,100,100,0.9)";
-        onClick(state);
-      };
-      return btn;
+    // Display toggles
+    const labelBtn = document.createElement("button");
+    labelBtn.className = "ctrl-btn active";
+    labelBtn.textContent = "📝 Labels";
+    labelBtn.onclick = () => {
+      showLabels = !showLabels;
+      labelBtn.classList.toggle("active", showLabels);
     };
+    displayButtons.appendChild(labelBtn);
 
-    optionsDiv.appendChild(createToggle("📝 Labels", true, (v) => showLabels = v));
-    optionsDiv.appendChild(createToggle("✨ Lines", true, (v) => showLines = v));
+    const lineBtn = document.createElement("button");
+    lineBtn.className = "ctrl-btn active";
+    lineBtn.textContent = "✨ Lines";
+    lineBtn.onclick = () => {
+      showLines = !showLines;
+      lineBtn.classList.toggle("active", showLines);
+    };
+    displayButtons.appendChild(lineBtn);
 
     const buildingsBtn = document.createElement("button");
-    buildingsBtn.textContent = "🏢 Buildings: OFF";
-    buildingsBtn.style.cssText = `padding:8px 12px;background:rgba(100,100,100,0.9);color:white;border:1px solid #888;border-radius:4px;cursor:pointer;font-size:12px;`;
+    buildingsBtn.className = "ctrl-btn";
+    buildingsBtn.textContent = "🏢 Buildings";
     buildingsBtn.onclick = async () => {
-      buildingsBtn.textContent = "🏢 Loading...";
-      buildingsBtn.disabled = true;
+      buildingsBtn.textContent = "⏳ Loading...";
       const enabled = await toggleBuildings();
-      buildingsBtn.textContent = enabled ? "🏢 Buildings: ON" : "🏢 Buildings: OFF";
-      buildingsBtn.style.background = enabled ? "rgba(80,120,80,0.9)" : "rgba(100,100,100,0.9)";
-      buildingsBtn.style.borderColor = enabled ? "#6a6" : "#888";
-      buildingsBtn.disabled = false;
+      buildingsBtn.textContent = "🏢 Buildings";
+      buildingsBtn.classList.toggle("active", enabled);
     };
-    optionsDiv.appendChild(buildingsBtn);
+    displayButtons.appendChild(buildingsBtn);
 
     // Camera buttons
-    const cameraTitle = document.createElement("div");
-    cameraTitle.textContent = "📷 Camera";
-    cameraTitle.style.cssText = `color:#aaa;font-size:11px;font-family:sans-serif;margin-top:15px;margin-bottom:2px;`;
-    buttonContainer.appendChild(cameraTitle);
-
-    const cameraDiv = document.createElement("div");
-    cameraDiv.style.cssText = `display:flex;flex-direction:column;gap:5px;`;
-    buttonContainer.appendChild(cameraDiv);
-
-    const cameraButtons = [
-      { text: "⬆️ Look Up", pitch: 85, color: "rgba(100,50,150,0.9)", border: "#a070d0" },
-      { text: "➡️ Horizon", pitch: 5, color: "rgba(100,80,50,0.9)", border: "#c9a060" },
-      { text: "🚶 Street", pitch: 15, height: 2, color: "rgba(50,100,100,0.9)", border: "#60a0a0" },
+    const camActions = [
+      { text: "⬆️ Look Up", pitch: 85 },
+      { text: "➡️ Horizon", pitch: 5 },
+      { text: "🚶 Street", pitch: 15, height: 2 },
     ];
 
-    cameraButtons.forEach(({ text, pitch, height, color, border }) => {
+    camActions.forEach(({ text, pitch, height }) => {
       const btn = document.createElement("button");
+      btn.className = "ctrl-btn camera";
       btn.textContent = text;
-      btn.style.cssText = `padding:8px 12px;background:${color};color:white;border:1px solid ${border};border-radius:4px;cursor:pointer;font-size:12px;`;
       btn.onclick = () => {
         const pos = viewer.camera.positionCartographic;
         viewer.camera.flyTo({
@@ -748,77 +807,69 @@
           duration: 1,
         });
       };
-      cameraDiv.appendChild(btn);
+      cameraButtons.appendChild(btn);
     });
 
     // Time controls
-    const timeContainer = document.createElement("div");
-    timeContainer.style.cssText = `position:absolute;bottom:20px;left:10px;display:flex;flex-wrap:wrap;gap:5px;z-index:1000;`;
-    document.body.appendChild(timeContainer);
-
     const speeds = [
       { name: "⏸", mult: 0 }, { name: "▶", mult: 1 },
-      { name: "⏩ 1m/s", mult: 60 }, { name: "⏩ 1h/s", mult: 3600 },
+      { name: "⏩60x", mult: 60 }, { name: "⏩3600x", mult: 3600 },
     ];
 
-    speeds.forEach((speed) => {
+    speeds.forEach(speed => {
       const btn = document.createElement("button");
+      btn.className = "time-btn";
       btn.textContent = speed.name;
-      btn.style.cssText = `padding:6px 10px;background:rgba(60,60,60,0.9);color:white;border:1px solid #666;border-radius:4px;cursor:pointer;`;
       btn.onclick = () => {
         viewer.clock.multiplier = speed.mult;
         viewer.clock.shouldAnimate = speed.mult !== 0;
       };
-      timeContainer.appendChild(btn);
+      timeControls.appendChild(btn);
     });
 
-    // Night/Day buttons
-    const timeButtons = [
-      { name: "🌙 Night", hours: 24, color: "rgba(80,50,120,0.9)", border: "#a070d0" },
-      { name: "☀️ Day", hours: 12, color: "rgba(150,120,50,0.9)", border: "#d0a030" },
-    ];
+    const nightBtn = document.createElement("button");
+    nightBtn.className = "time-btn night";
+    nightBtn.textContent = "🌙";
+    nightBtn.onclick = () => {
+      const lon = Cesium.Math.toDegrees(viewer.camera.positionCartographic.longitude);
+      const now = new Date();
+      now.setUTCHours(24 - Math.round(lon / 15), 0, 0, 0);
+      viewer.clock.currentTime = Cesium.JulianDate.fromDate(now);
+    };
+    timeControls.appendChild(nightBtn);
 
-    timeButtons.forEach(({ name, hours, color, border }) => {
-      const btn = document.createElement("button");
-      btn.textContent = name;
-      btn.style.cssText = `padding:6px 10px;background:${color};color:white;border:1px solid ${border};border-radius:4px;cursor:pointer;`;
-      btn.onclick = () => {
-        const lon = Cesium.Math.toDegrees(viewer.camera.positionCartographic.longitude);
-        const now = new Date();
-        now.setUTCHours(hours - Math.round(lon / 15), 0, 0, 0);
-        viewer.clock.currentTime = Cesium.JulianDate.fromDate(now);
-      };
-      timeContainer.appendChild(btn);
-    });
+    const dayBtn = document.createElement("button");
+    dayBtn.className = "time-btn day";
+    dayBtn.textContent = "☀️";
+    dayBtn.onclick = () => {
+      const lon = Cesium.Math.toDegrees(viewer.camera.positionCartographic.longitude);
+      const now = new Date();
+      now.setUTCHours(12 - Math.round(lon / 15), 0, 0, 0);
+      viewer.clock.currentTime = Cesium.JulianDate.fromDate(now);
+    };
+    timeControls.appendChild(dayBtn);
 
     // ============================================
     // INFO UPDATE
     // ============================================
     function updateInfo() {
-      const time = viewer.clock.currentTime;
-      const date = Cesium.JulianDate.toDate(time);
-      const gmst = computeGMST(time);
+      const time = viewer.clock.currentTime, date = Cesium.JulianDate.toDate(time), gmst = computeGMST(time);
       const cameraPos = viewer.camera.positionCartographic;
       const lat = Cesium.Math.toDegrees(cameraPos.latitude).toFixed(1);
       const lon = Cesium.Math.toDegrees(cameraPos.longitude).toFixed(1);
       const alt = cameraPos.height.toFixed(0);
       const lst = gmst / 15 + parseFloat(lon) / 15;
       const lstNorm = ((lst % 24) + 24) % 24;
-      const lstH = Math.floor(lstNorm);
-      const lstM = Math.floor((lstNorm - lstH) * 60);
+      const lstH = Math.floor(lstNorm), lstM = Math.floor((lstNorm - lstH) * 60);
       const localOffset = Math.round(parseFloat(lon) / 15);
       const localHour = (date.getUTCHours() + localOffset + 24) % 24;
 
-      let visibleStars = 0;
-      starCatalog.forEach(star => { if (getStarScreenPosition(star.ra, star.dec, gmst)) visibleStars++; });
-
       infoPanel.innerHTML = `
-        <div style="font-size:15px;margin-bottom:10px;"><strong>🌟 Star Map</strong></div>
-        <div style="margin-bottom:6px;"><strong>Position:</strong> ${lat}°, ${lon}°</div>
-        <div style="margin-bottom:6px;"><strong>Altitude:</strong> ${alt} m</div>
-        <div style="margin-bottom:6px;"><strong>Sidereal Time:</strong> ${lstH}h ${String(lstM).padStart(2, "0")}m</div>
-        <div style="margin-bottom:6px;"><strong>Local Time:</strong> ~${localHour}:00 ${localHour >= 19 || localHour < 6 ? "🌙" : "☀️"}</div>
-        <div style="color:#888;font-size:11px;margin-top:10px;">${Object.keys(constellationCenters).length} constellations<br>Stars visible: ${visibleStars}<br>Buildings: ${buildingsEnabled ? "ON" : "OFF"}</div>
+        <div style="font-size:14px;margin-bottom:8px;"><strong>🌟 Star Map</strong></div>
+        <div style="margin-bottom:4px;"><strong>Pos:</strong> ${lat}°, ${lon}°</div>
+        <div style="margin-bottom:4px;"><strong>Alt:</strong> ${alt} m</div>
+        <div style="margin-bottom:4px;"><strong>LST:</strong> ${lstH}h ${String(lstM).padStart(2, "0")}m</div>
+        <div><strong>Time:</strong> ~${localHour}:00 ${localHour >= 19 || localHour < 6 ? "🌙" : "☀️"}</div>
       `;
     }
 
@@ -838,7 +889,7 @@
     viewer.clock.multiplier = 60;
     viewer.clock.shouldAnimate = true;
 
-    console.log("🌟 Star map with compass loaded! (Cesium 1.136)");
+    console.log("🌟 Star map loaded! (Cesium 1.136)");
   </script>
 </body>
 </html>
